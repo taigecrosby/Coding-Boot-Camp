@@ -12,15 +12,15 @@
 # * NOTE * : When adding homework solutions, this is designed to add homework solutions after the unit is over so it will add all of solved activities as well if they weren't already posted.
 # EXAMPLE:
 #	For adding a new unit if your current working directory is at the top of your class repository:
-# ~/gitlab.sh "01-Cybersecurity-101" "." "Adding Unit 01"
+# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Unit 01"
 #
 #	For adding solved activities later on if your current working directory is at the top of your class repository:
-# ~/gitlab.sh "01-Cybersecurity-101" "." "Adding Solved" "1"
-# ~/gitlab.sh "01-Cybersecurity-101" "." "Adding Solved" "2"
-# ~/gitlab.sh "01-Cybersecurity-101" "." "Adding Solved" "3"
+# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Solved" "1"
+# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Solved" "2"
+# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Solved" "3"
 #
 #	For adding the homework solution:
-# ~/gitlab.sh "01-Cybersecurity-101" "." "Adding Solved Homework" "01-Cybersecurity-101"
+# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Solved Homework" "01-Cybersecurity-101"
 # =================================================================================================================================================================================================
 
 # ==========================================
