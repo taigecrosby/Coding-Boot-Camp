@@ -108,21 +108,20 @@ if [ $4 = "1" ]; then
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
   find $NEWSOLVEDDEST/2 -iname sol* -exec rm -rf {} \;
   find $NEWSOLVEDDEST/3 -iname sol* -exec rm -rf {} \;
-  find $NEWSOLVEDDEST -iname *assets* -exec rm -rf {} \;
 elif [ $4 = "2" ]; then
   for dir in $SOLVEDSRC; do
     cp -ru $SOLVEDSRC $SOLVEDDEST
   done
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
   find $NEWSOLVEDDEST/3 -iname sol* -exec rm -rf {} \;
-  find $NEWSOLVEDDEST -iname *assets* -exec rm -rf {};
 elif [ $4 = "3" ]; then
   for dir in $SOLVEDSRC; do
     cp -ru $SOLVEDSRC $SOLVEDDEST
   done
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
-  find $NEWSOLVEDDEST -iname *assets* -exec rm -rf {} \;
 fi
+
+find $NEWSOLVEDDEST -iname *assets* -exec rm -rf {} \;
 
 # =====================
 # Add Homework Solution
