@@ -28,7 +28,7 @@
 # ==========================================
 
 SOURCE=~/<path to instructional staff github repo>/1-Lesson-Plans/$1
-DEST=~/<path to your class repo>/Lesson-Plans
+DEST=~/<path to your class repo>/1-Lesson-Plans
 NEWDEST=~/<path to your class repo>/1-Lesson-Plans/$1
 GITKEEP=~/<path to your class repo>/1-Lesson-Plans/$1/*/*/*
 PROJECT=~/<path to your class repo>/1-Lesson-Plans/$1/*/*
