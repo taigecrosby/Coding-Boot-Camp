@@ -24,6 +24,8 @@
 #
 # 	For adding one day at a time if your curent working directory is at the top of your class repository:
 # ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Day 1 Unit 01" "day1"
+# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Day 1 Unit 01" "day2"
+# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Day 1 Unit 01" "day3"
 #
 # 	For adding homework if your current working directory is at the top of your class repository:
 # ~/new_unit "01-Cybersecurity-101" "." "Adding Homework" "home"
