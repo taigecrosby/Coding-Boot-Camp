@@ -24,8 +24,6 @@
 #
 # 	For adding one day at a time if your curent working directory is at the top of your class repository:
 # ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Day 1 Unit 01" "day1"
-# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Day 1 Unit 01" "day2"
-# ~/new_unit.sh "01-Cybersecurity-101" "." "Adding Day 1 Unit 01" "day3"
 #
 # 	For adding homework if your current working directory is at the top of your class repository:
 # ~/new_unit "01-Cybersecurity-101" "." "Adding Homework" "home"
@@ -43,21 +41,21 @@
 # Creating the Unit
 # =================
 
-SOURCE=<Path to your instructor repo>/1-Lesson-Plans/$1
-DEST=<Path to your class repo>/1-Lesson-Plans
-NEWDEST=<Path to your class repo>/1-Lesson-Plans/$1
-GITKEEP=<Path to your class repo>/1-Lesson-Plans/$1/*/*/*
-PROJECT=<Path to your class repo>/1-Lesson-Plans/$1/*/*
+SOURCE=<Path to Instructional Staff Repo>/1-Lesson-Plans/$1
+DEST=<Path to Class Repo>/1-Lesson-Plans
+NEWDEST=<Path to Class Repo>/1-Lesson-Plans/$1
+GITKEEP=<Path to Class Repo>/1-Lesson-Plans/$1/*/*/*
+PROJECT=<Path to Class Repo>/1-Lesson-Plans/$1/*/*
 
 if [ $4 = "unit" ]; then
-  mkdir <Path to your class repo>/1-Lesson-Plans
+  mkdir <Path to Class Repo>/1-Lesson-Plans
   for dir in $SOURCE; do
     cp -ru $SOURCE $DEST
   done
 fi
 
 if [ $4 = "day1" ]; then
-  mkdir <Path to your class repo>/1-Lesson-Plans
+  mkdir <Path to Class Repo>/1-Lesson-Plans
   for dir in $SOURCE; do
     cp -ru $SOURCE $DEST
     rm -rf $NEWDEST/2
@@ -78,18 +76,24 @@ if [ $4 = "day3" ]; then
   done
 fi
 
+# ===================================
+# Grabbing Slide Links From the Guide
+# ===================================
+
+grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/1/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/1/Slides_Day_1
+grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/2/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/2/Slides_Day_2
+grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/3/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/3/Slides_Day_3
+grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/4/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/4/Slides_Day_4
+
+# =====================================
+# Deleting Instructional Staff Material
+# =====================================
+
 find $NEWDEST -iname sol* -exec rm -rf {} \;
 find $NEWDEST -iname *lan.md -exec rm -rf {} \;
 find $NEWDEST -iname *_INS_* -exec rm -rf {} \;
 find $NEWDEST -iname *assets* -exec rm -rf {} \;
-
-# ====================================
-# Grabbing Slide Links From the Guides
-# ====================================
-
-grep -i slides <Path to your class repo>/1-Lesson-Plans/$1/1/*uide.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to your class repo>/1-Lesson-Plans/$1/1/Slides_Day_1
-grep -i slides <Path to your class repo>/1-Lesson-Plans/$1/2/*uide.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to your class repo>/1-Lesson-Plans/$1/2/Slides_Day_2
-grep -i slides <Path to your class repo>/1-Lesson-Plans/$1/3/*uide.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to your class repo>/1-Lesson-Plans/$1/3/Slides_Day_3
+find $NEWDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 
 # ===========================================================================
 # Adding .gitkeep to all necessary folders to keep the structure looking nice
@@ -110,14 +114,14 @@ done
 # =================================================
 
 
-HOMEWORKSRC=<Path to your instructor repo>/2-Homework/$1
-HOMEWORKDEST=<Path to your class repo>/2-Homework
-HOMEGIT=<Path to your class repo>/*
-HOMEWORKGIT=<Path to your class repo>/2-Homework/*
-HOMESOLVE=<Path to your class repo>/2-Homework/$1
+HOMEWORKSRC=<Path to Instructional Staff Repo>/2-Homework/$1
+HOMEWORKDEST=<Path to Class Repo>/2-Homework
+HOMEGIT=<Path to Class Repo>/*
+HOMEWORKGIT=<Path to Class Repo>/2-Homework/*
+HOMESOLVE=<Path to Class Repo>/2-Homework/$1
 
 if [ $4 = "home" ]; then
-  mkdir <Path to your class repo>/2-Homework
+  mkdir <Path to Class Repo>/2-Homework
   for dir in $HOMEWORKSRC; do
    cp -ru $HOMEWORKSRC $HOMEWORKDEST
   done
@@ -135,30 +139,39 @@ if [ $4 = "home" ]; then
 fi
 
 if [ $4 = "unithome" ]; then
-  mkdir <Path to your class repo>/1-Lesson-Plans
-  mkdir <Path to your class repo>/2-Homework
+  mkdir <Path to Class Repo>/1-Lesson-Plans
+  mkdir <Path to Class Repo>/2-Homework
   for dir in $SOURCE; do
     cp -ru $SOURCE $DEST
     cp -ru $HOMEWORKSRC $HOMEWORKDEST
   done
+  grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/1/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/1/Slides_Day_1
+  grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/2/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/2/Slides_Day_2
+  grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/3/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/3/Slides_Day_3
+  grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/4/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/4/Slides_Day_4
   find $HOMESOLVE -iname sol* -exec rm -rf {} \;
   find $HOMEWORKDEST -iname *notes* -exec rm -rf {} \;
   find $NEWDEST -iname sol* -exec rm -rf {} \;
   find $NEWDEST -iname *lan.md -exec rm -rf {} \;
   find $NEWDEST -iname *_INS_* -exec rm -rf {} \;
   find $NEWDEST -iname *assets* -exec rm -rf {} \;
-  grep -i slides <Path to your class repo>/1-Lesson-Plans/$1/1/*uide.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to your class repo>/1-Lesson-Plans/$1/1/Slides_Day_1
-  grep -i slides <Path to your class repo>/1-Lesson-Plans/$1/2/*uide.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to your class repo>/1-Lesson-Plans/$1/2/Slides_Day_2
-  grep -i slides <Path to your class repo>/1-Lesson-Plans/$1/3/*uide.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to your class repo>/1-Lesson-Plans/$1/3/Slides_Day_3
+  find $NEWDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
+  for dir in $HOMEGIT; do
+    touch $dir/.gitkeep
+  done
+
+  for dir in $HOMEWORKGIT; do
+    touch $dir/.gitkeep
+  done
 fi
 
 # =====================
 # Add Solved Activities
 # =====================
 
-SOLVEDSRC=<Path to your instructor repo>/1-Lesson-Plans/$1
-SOLVEDDEST=<Path to your class repo>/1-Lesson-Plans
-NEWSOLVEDDEST=<Path to your class repo>/1-Lesson-Plans/$1
+SOLVEDSRC=<Path to Instructional Staff Repo>/1-Lesson-Plans/$1
+SOLVEDDEST=<Path to Class Repo>/1-Lesson-Plans
+NEWSOLVEDDEST=<Path to Class Repo>/1-Lesson-Plans/$1
 
 if [ $4 = "1" ]; then
   for dir in $SOLVEDSRC; do
@@ -167,20 +180,24 @@ if [ $4 = "1" ]; then
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
   find $NEWSOLVEDDEST/2 -iname sol* -exec rm -rf {} \;
   find $NEWSOLVEDDEST/3 -iname sol* -exec rm -rf {} \;
+  find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 elif [ $4 = "2" ]; then
   for dir in $SOLVEDSRC; do
     cp -ru $SOLVEDSRC $SOLVEDDEST
   done
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
   find $NEWSOLVEDDEST/3 -iname sol* -exec rm -rf {} \;
+  find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 elif [ $4 = "3" ]; then
   for dir in $SOLVEDSRC; do
     cp -ru $SOLVEDSRC $SOLVEDDEST
   done
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
+  find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 fi
 
 find $NEWSOLVEDDEST -iname *assets* -exec rm -rf {} \;
+find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 
 # =====================
 # Add Homework Solution
@@ -194,6 +211,20 @@ if [ $4 = "$1" ]; then
     cp -ru $SOURCE $DEST
   done
   find $NEWDEST -iname *lan.md -exec rm -rf {} \;
+  find $NEWDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 fi
+
+for dir in $PROJECT; do
+  touch $dir/.gitkeep
+done
+
+touch $DEST/.gitkeep
+
+for dir in $GITKEEP; do
+  touch $dir/.gitkeep
+done
+
+shopt -s extglob
+rm !(README.md)
 
 git add $2 && git commit -m "$3" && git push
