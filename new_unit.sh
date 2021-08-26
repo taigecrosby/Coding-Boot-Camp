@@ -3,9 +3,9 @@
 # =================================================================================================================================================================================================
 # USAGE:
 # Change the directories in each path to match how your system is set up.
-# There are 4 arguments that must be passed.
+# There are 4 arguments that must be pas.
 # The first 3 apply to which unit, where you want to add the files from git, and then your git commit message. 
-# The 4th argument is used for if you want to add each day at a time, just the homework, the whole unit, the whole unit plus the homework, or the solved versions.
+# The 4th argument is u for if you want to add each day at a time, just the homework, the whole unit, the whole unit plus the homework, or the solved versions.
 # To add the homework solution, you will just have to give the 4th argument the same name as the unit you specify in the 1st argument.
 # * NOTE * : When adding solved activities you must add them in order from 1, 2, and then 3. If you try to add 3 without adding 1 or 2 it will add solved for all 3 days.
 # * NOTE * : When adding homework solutions, this is designed to add homework solutions after the unit is over so it will add all of solved activities as well if they weren't already posted.
@@ -80,10 +80,10 @@ fi
 # Grabbing Slide Links From the Guide
 # ===================================
 
-grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/1/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/1/Slides_Day_1
-grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/2/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/2/Slides_Day_2
-grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/3/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/3/Slides_Day_3
-grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/4/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/4/Slides_Day_4
+grep Slides <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/1/*lan.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to Class Repo>/1-Lesson-Plans/$1/1/Slides_Day_1
+grep Slides <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/2/*lan.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to Class Repo>/1-Lesson-Plans/$1/2/Slides_Day_2
+grep Slides <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/3/*lan.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to Class Repo>/1-Lesson-Plans/$1/3/Slides_Day_3
+grep Slides <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/4/*lan.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to Class Repo>/1-Lesson-Plans/$1/4/Slides_Day_4
 
 # =====================================
 # Deleting Instructional Staff Material
@@ -145,10 +145,10 @@ if [ $4 = "unithome" ]; then
     cp -ru $SOURCE $DEST
     cp -ru $HOMEWORKSRC $HOMEWORKDEST
   done
-  grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/1/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/1/Slides_Day_1
-  grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/2/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/2/Slides_Day_2
-  grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/3/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/3/Slides_Day_3
-  grep Slides <Path to Class Repo>/1-Lesson-Plans/$1/4/*lan.md | awk -F"(" '{print $2}' | sed 's/)//' | sed 's/\.$//' > <Path to Class Repo>/1-Lesson-Plans/$1/4/Slides_Day_4
+  grep Slides <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/1/*lan.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to Class Repo>/1-Lesson-Plans/$1/1/Slides_Day_1
+  grep Slides <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/2/*lan.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to Class Repo>/1-Lesson-Plans/$1/2/Slides_Day_2
+  grep Slides <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/3/*lan.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to Class Repo>/1-Lesson-Plans/$1/3/Slides_Day_3
+  grep Slides <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/4/*lan.md | awk -F"(" '{print $2}' | awk -F")" '{print $1}' > <Path to Class Repo>/1-Lesson-Plans/$1/4/Slides_Day_4
   find $HOMESOLVE -iname sol* -exec rm -rf {} \;
   find $HOMEWORKDEST -iname *notes* -exec rm -rf {} \;
   find $NEWDEST -iname sol* -exec rm -rf {} \;
@@ -196,6 +196,7 @@ elif [ $4 = "3" ]; then
   find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 fi
 
+find $NEWDEST -iname *_INS_* -exec rm -rf {} \;
 find $NEWSOLVEDDEST -iname *assets* -exec rm -rf {} \;
 find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 
