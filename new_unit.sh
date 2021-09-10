@@ -80,10 +80,10 @@ fi
 # Grabbing Slide Links From the Guide
 # ===================================
 
-#grep "Slides]" $SOURCE/1/*lan.md > $NEWDEST/1/Slides.md
-#grep "Slides]" $SOURCE/2/*lan.md > $NEWDEST/2/Slides.md
-#grep "Slides]" $SOURCE/3/*lan.md > $NEWDEST/3/Slides.md
-#grep "Slides]" $SOURCE/4/*lan.md > $NEWDEST/4/Slides.md
+grep "Slides]" $SOURCE/1/*lan.md > $NEWDEST/1/Slides.md
+grep "Slides]" $SOURCE/2/*lan.md > $NEWDEST/2/Slides.md
+grep "Slides]" $SOURCE/3/*lan.md > $NEWDEST/3/Slides.md
+grep "Slides]" $SOURCE/4/*lan.md > $NEWDEST/4/Slides.md
 
 # =====================================
 # Deleting Instructional Staff Material
