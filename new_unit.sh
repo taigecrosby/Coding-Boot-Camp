@@ -80,10 +80,10 @@ fi
 # Grabbing Slide Links From the Guide
 # ===================================
 
-grep "Slides]" <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/1/*lan.md > <Path to Class Repo>/1-Lesson-Plans/$1/1/Slides.md
-grep "Slides]" <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/2/*lan.md > <Path to Class Repo>/1-Lesson-Plans/$1/2/Slides.md
-grep "Slides]" <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/3/*lan.md > <Path to Class Repo>/1-Lesson-Plans/$1/3/Slides.md
-grep "Slides]" <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/4/*lan.md > <Path to Class Repo>/1-Lesson-Plans/$1/4/Slides.md
+grep "Slides]" $SOURCE/1/*lan.md > $NEWDEST/1/Slides.md
+grep "Slides]" $SOURCE/2/*lan.md > $NEWDEST/2/Slides.md
+grep "Slides]" $SOURCE/3/*lan.md > $NEWDEST/3/Slides.md
+grep "Slides]" $SOURCE/4/*lan.md > $NEWDEST/4/Slides.md
 
 # =====================================
 # Deleting Instructional Staff Material
@@ -145,10 +145,10 @@ if [ $4 = "unithome" ]; then
     cp -ru $SOURCE $DEST
     cp -ru $HOMEWORKSRC $HOMEWORKDEST
   done
-  grep "Slides]" <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/1/*lan.md > <Path to Class Repo>/1-Lesson-Plans/$1/1/Slides.md
-  grep "Slides]" <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/2/*lan.md > <Path to Class Repo>/1-Lesson-Plans/$1/2/Slides.md
-  grep "Slides]" <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/3/*lan.md > <Path to Class Repo>/1-Lesson-Plans/$1/3/Slides.md
-  grep "Slides]" <Path to Instructional Staff Repo>/1-Lesson-Plans/$1/4/*lan.md > <Path to Class Repo>/1-Lesson-Plans/$1/4/Slides.md
+  grep "Slides]" $SOURCE/1/*lan.md > $NEWDEST/1/Slides.md
+  grep "Slides]" $SOURCE/2/*lan.md > $NEWDEST/2/Slides.md
+  grep "Slides]" $SOURCE/3/*lan.md > $NEWDEST/3/Slides.md
+  grep "Slides]" $SOURCE/4/*lan.md > $NEWDEST/4/Slides.md
   find $HOMESOLVE -iname sol* -exec rm -rf {} \;
   find $HOMEWORKDEST -iname *notes* -exec rm -rf {} \;
   find $NEWDEST -iname sol* -exec rm -rf {} \;
