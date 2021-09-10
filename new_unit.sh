@@ -80,10 +80,10 @@ fi
 # Grabbing Slide Links From the Guide
 # ===================================
 
-grep "Slides]" $SOURCE/1/*lan.md > $NEWDEST/1/Slides.md
-grep "Slides]" $SOURCE/2/*lan.md > $NEWDEST/2/Slides.md
-grep "Slides]" $SOURCE/3/*lan.md > $NEWDEST/3/Slides.md
-grep "Slides]" $SOURCE/4/*lan.md > $NEWDEST/4/Slides.md
+#grep "Slides]" $SOURCE/1/*lan.md > $NEWDEST/1/Slides.md
+#grep "Slides]" $SOURCE/2/*lan.md > $NEWDEST/2/Slides.md
+#grep "Slides]" $SOURCE/3/*lan.md > $NEWDEST/3/Slides.md
+#grep "Slides]" $SOURCE/4/*lan.md > $NEWDEST/4/Slides.md
 
 # =====================================
 # Deleting Instructional Staff Material
@@ -94,6 +94,8 @@ find $NEWDEST -iname *lan.md -exec rm -rf {} \;
 find $NEWDEST -iname *_INS_* -exec rm -rf {} \;
 find $NEWDEST -iname *assets* -exec rm -rf {} \;
 find $NEWDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
+find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
+find $NEWDEST -name .ip.swp -exec rm -rf {} \;
 
 # ===========================================================================
 # Adding .gitkeep to all necessary folders to keep the structure looking nice
@@ -156,6 +158,8 @@ if [ $4 = "unithome" ]; then
   find $NEWDEST -iname *_INS_* -exec rm -rf {} \;
   find $NEWDEST -iname *assets* -exec rm -rf {} \;
   find $NEWDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
+  find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
+  find $NEWDEST -name .ip.swp -exec rm -rf {} \;
   for dir in $HOMEGIT; do
     touch $dir/.gitkeep
   done
@@ -180,6 +184,9 @@ if [ $4 = "1" ]; then
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
   find $NEWSOLVEDDEST/2 -iname sol* -exec rm -rf {} \;
   find $NEWSOLVEDDEST/3 -iname sol* -exec rm -rf {} \;
+  find $NEWSOLVEDDEST/4 -iname sol* -exec rm -rf {} \;
+  find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
+  find $NEWDEST -name .ip.swp -exec rm -rf {} \;
   find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 elif [ $4 = "2" ]; then
   for dir in $SOLVEDSRC; do
@@ -187,12 +194,26 @@ elif [ $4 = "2" ]; then
   done
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
   find $NEWSOLVEDDEST/3 -iname sol* -exec rm -rf {} \;
+  find $NEWSOLVEDDEST/4 -iname sol* -exec rm -rf {} \;
+  find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
+  find $NEWDEST -name .ip.swp -exec rm -rf {} \;
   find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 elif [ $4 = "3" ]; then
   for dir in $SOLVEDSRC; do
     cp -ru $SOLVEDSRC $SOLVEDDEST
   done
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
+  find $NEWSOLVEDDEST/4 -iname sol* -exec rm -rf {} \;
+  find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
+  find $NEWDEST -name .ip.swp -exec rm -rf {} \;
+  find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
+elif [ $4 = "4" ]; then
+  for dir in $SOLVEDSRC; do
+    cp -ru $SOLVEDSRC $SOLVEDDEST
+  done
+  find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
+  find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
+  find $NEWDEST -name .ip.swp -exec rm -rf {} \;
   find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 fi
 
