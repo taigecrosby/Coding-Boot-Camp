@@ -96,6 +96,8 @@ find $NEWDEST -iname *assets* -exec rm -rf {} \;
 find $NEWDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
 find $NEWDEST -name .ip.swp -exec rm -rf {} \;
+find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \;
+find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \;
 
 # ===========================================================================
 # Adding .gitkeep to all necessary folders to keep the structure looking nice
@@ -160,6 +162,8 @@ if [ $4 = "unithome" ]; then
   find $NEWDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
   find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
   find $NEWDEST -name .ip.swp -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \;
   for dir in $HOMEGIT; do
     touch $dir/.gitkeep
   done
@@ -188,6 +192,8 @@ if [ $4 = "1" ]; then
   find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
   find $NEWDEST -name .ip.swp -exec rm -rf {} \;
   find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \;
 elif [ $4 = "2" ]; then
   for dir in $SOLVEDSRC; do
     cp -ru $SOLVEDSRC $SOLVEDDEST
@@ -197,6 +203,8 @@ elif [ $4 = "2" ]; then
   find $NEWSOLVEDDEST/4 -iname sol* -exec rm -rf {} \;
   find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
   find $NEWDEST -name .ip.swp -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \;
   find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 elif [ $4 = "3" ]; then
   for dir in $SOLVEDSRC; do
@@ -206,6 +214,8 @@ elif [ $4 = "3" ]; then
   find $NEWSOLVEDDEST/4 -iname sol* -exec rm -rf {} \;
   find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
   find $NEWDEST -name .ip.swp -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \;
   find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 elif [ $4 = "4" ]; then
   for dir in $SOLVEDSRC; do
@@ -214,11 +224,15 @@ elif [ $4 = "4" ]; then
   find $NEWSOLVEDDEST -iname *lan.md -exec rm -rf {} \;
   find $NEWDEST -iname *_HW_* -exec rm -rf {} \;
   find $NEWDEST -name .ip.swp -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \;
+  find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \;
   find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 fi
 
 find $NEWDEST -iname *_INS_* -exec rm -rf {} \;
 find $NEWSOLVEDDEST -iname *assets* -exec rm -rf {} \;
+find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \;
+find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \;
 find $NEWSOLVEDDEST -name Complete-Cloud-Walkthrough.md -exec rm -rf {} \;
 
 # =====================
