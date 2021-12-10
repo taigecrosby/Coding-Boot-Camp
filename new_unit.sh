@@ -154,7 +154,7 @@ if [ $4 = "unithome" ]; then
   grep "Slides]" $SOURCE/3/*lan.md > $NEWDEST/3/Slides.md
   grep "Slides]" $SOURCE/4/*lan.md > $NEWDEST/4/Slides.md
   if [ $1 = "20-Red-vs.-Blue-Project" ]; then
-    grep "Slide Template]" $SOURCE/*lan.md > $NEWDEST/Slides.md
+    grep "Slides]" $SOURCE/*lan.md > $NEWDEST/Slides.md
   fi
   find $HOMESOLVE -iname sol* -exec rm -rf {} \;
   find $HOMEWORKDEST -iname *notes* -exec rm -rf {} \;
