@@ -2,8 +2,12 @@
 
 # Navigate into your student repo and use the following syntax:
 # If this script is placed one directory up from the student repo use:
-# 
+#
 # ../new_unit.sh "<unit>" "<git add path>" "<commit message>" "<option>"
+#
+#
+# *** NOTE ***
+# Change lines that contain "CHANGE THIS" to match your instructor and student repo paths.
 #
 #
 # *** Example usages ***:
@@ -46,15 +50,15 @@
 # ../new_unit.sh "01-Cybersecurity-101" "." "Adding Homework Solution" "homesol"
 
 
-SRC=PATH TO INSTRUCTOR REPO/1-Lesson-Plans/$1
-DEST=PATH TO STUDENT REPO/1-Lesson-Plans
-NEWDEST=PATH TO STUDENT REPO/1-Lesson-Plans/$1
-HOMESRC=PATH TO INSTRUCTOR REPO/2-Homework/$1
-HOMEDEST=PATH TO STUDENT REPO/2-Homework
-NEWHOMEDEST=PATH TO STUDENT REPO/2-Homework/$1
+SRC=PATH TO INSTRUCTOR REPO/1-Lesson-Plans/$1  # CHANGE THIS
+DEST=PATH TO STUDENT REPO/1-Lesson-Plans  # CHANGE THIS
+NEWDEST=PATH TO STUDENT REPO/1-Lesson-Plans/$1  # CHANGE THIS
+HOMESRC=PATH TO INSTRUCTOR REPO/2-Homework/$1  # CHANGE THIS
+HOMEDEST=PATH TO STUDENT REPO/2-Homework  # CHANGE THIS
+NEWHOMEDEST=PATH TO STUDENT REPO/2-Homework/$1  # CHANGE THIS
 
-mkdir PATH TO STUDENT REPO/1-Lesson-Plans 2>/dev/null
-mkdir PATH TO STUDENT REPO/2-Homework 2>/dev/null
+mkdir PATH TO STUDENT REPO/1-Lesson-Plans 2>/dev/null  # CHANGE THIS
+mkdir PATH TO STUDENT REPO/2-Homework 2>/dev/null  # CHANGE THIS
 
 if [ $4 = "unit" ]; then
   for i in $SRC; do
