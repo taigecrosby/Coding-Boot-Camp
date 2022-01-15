@@ -10,7 +10,7 @@
 # Change lines that contain "CHANGE THIS" to match your instructor and student repo paths.
 #
 #
-# *** Example usages ***:
+# *** Usages ***:
 #
 #
 # For adding the whole unsolved unit without homework:
