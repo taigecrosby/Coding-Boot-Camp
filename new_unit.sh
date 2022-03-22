@@ -1,66 +1,44 @@
 #!/bin/bash
 
-# Navigate into your student repo and use the following syntax:
-# If this script is placed one directory up from the student repo use:
-#
-# ../new_unit.sh "<unit>" "<git add path>" "<commit message>" "<option>"
-#
-#
-# *** NOTE ***
-# Change lines that contain "CHANGE THIS" to match your instructor and student repo paths.
-#
-#
-# *** Usages ***:
-#
-#
-# For adding the whole unsolved unit without homework:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Unit 01" "unit"
-#
-# For adding the whole unit with homework:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Unit 01" "unithome"
-#
-# For adding day 1 unsolved:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Day 1" "day1"
-#
-# For adding day 1 solved:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Solved Day 1" "1"
-#
-# For adding day 2 unsolved:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Day 2" "day2"
-#
-# For adding day 2 solved:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Solved Day 2" "2"
-#
-# For adding day 3 unsolved:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Day 3" "day3"
-#
-# For adding day 3 solved:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Solved Day 3" "3"
-#
-# For adding day 4 unsolved:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Day 4" "day4"
-#
-# For adding Day 4 solved:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Solved Day 4" "4"
-#
-# For adding just homework, no unit:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Homework Unit 01" "home"
-#
-# For adding homework solution:
-# ../new_unit.sh "01-Cybersecurity-101" "." "Adding Homework Solution" "homesol"
+# Replace the paths in the lines that contain CHANGE ME to match the paths of your local Instructor/Student repo's
 
 
-SRC=PATH TO INSTRUCTOR REPO/1-Lesson-Plans/$1  # CHANGE THIS
-DEST=PATH TO STUDENT REPO/1-Lesson-Plans  # CHANGE THIS
-NEWDEST=PATH TO STUDENT REPO/1-Lesson-Plans/$1  # CHANGE THIS
-HOMESRC=PATH TO INSTRUCTOR REPO/2-Homework/$1  # CHANGE THIS
-HOMEDEST=PATH TO STUDENT REPO/2-Homework  # CHANGE THIS
-NEWHOMEDEST=PATH TO STUDENT REPO/2-Homework/$1  # CHANGE THIS
+echo "What unit do you want to upload?"
+echo "** Use full unit name ** Example: 01-Cybersecurity-101"
+read var1
+echo "Where is your git add location?"
+echo " ** Use the path to add everything from ** Example: '.' would be from your current directory"
+read var2
+echo "What is your commit message?"
+read var3
+echo "What do you want to upload?"
+echo """** OPTIONS ** 
+unit - add whole unsolved unit without homework
+unithome - add whole unsolved unit with homework
+day1 - add day 1 unsolved
+1 - add day 1 solved
+day2 - add day 2 unsolved
+2 - add day 2 solved
+day3 - add day 3 unsolved
+3 - add day 3 solved
+day4 - add day 4 unsolved
+4 - add day 4 solved
+home - add just unsolved homework
+homesol - add homework solution
+"""
+read var4
 
-mkdir PATH TO STUDENT REPO/1-Lesson-Plans 2>/dev/null  # CHANGE THIS
-mkdir PATH TO STUDENT REPO/2-Homework 2>/dev/null  # CHANGE THIS
+SRC=PATH TO INSTRUCTOR REPO/1-Lesson-Plans/$var1 # CHANGE ME
+DEST=PATH TO STUDENT REPO/1-Lesson-Plans # CHANGE ME
+NEWDEST=PATH TO STUDENT REPO/1-Lesson-Plans/$var1 # CHANGE ME
+HOMESRC=PATH TO INSTRUCTOR REPO/2-Homework/$var1 # CHANGE ME
+HOMEDEST=PATH TO STUDENT REPO/2-Homework # CHANGE ME
+NEWHOMEDEST=PATH TO STUDENT REPO/2-Homework/$var1 # CHANGE ME
 
-if [ $4 = "unit" ]; then
+mkdir PATH TO STUDENT REPO/1-Lesson-Plans 2>/dev/null # CHANGE ME
+mkdir PATH TO STUDENT REPO/2-Homework 2>/dev/null # CHANGE ME
+
+if [ $var4 = "unit" ]; then
   for i in $SRC; do
     cp -ru $SRC $DEST
   done
@@ -73,22 +51,22 @@ if [ $4 = "unit" ]; then
   find $NEWDEST -name .ip.swp -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \; 2>/dev/null
-  grep -i 'slides]' $SRC/1/*lan.md > $NEWDEST/1/Slides.md
-  grep -i 'slides]' $SRC/2/*lan.md > $NEWDEST/2/Slides.md
-  grep -i 'slides]' $SRC/3/*lan.md > $NEWDEST/3/Slides.md
-  grep -i 'slides]' $SRC/4/*lan.md > $NEWDEST/3/Slides.md
-  if [ $1 = "13-Elk-Stack-Project" ]; then
-    grep -i 'slides]' $SRC/*lan.md > $NEWDEST/Slides.md
+  grep -i 'slides]' $SRC/1/*lan.md 2>/dev/null > $NEWDEST/1/Slides.md 
+  grep -i 'slides]' $SRC/2/*lan.md 2>/dev/null > $NEWDEST/2/Slides.md 
+  grep -i 'slides]' $SRC/3/*lan.md 2>/dev/null > $NEWDEST/3/Slides.md 
+  grep -i 'slides]' $SRC/4/*lan.md 2>/dev/null > $NEWDEST/3/Slides.md 
+  if [ $var1 = "13-Elk-Stack-Project" ]; then
+    grep -i 'slides]' $SRC/*lan.md 2>/dev/null > $NEWDEST/Slides.md
   fi
-  if [ $1 = "20-Red-vs.-Blue-Project" ]; then
-    grep -i 'slides]' $SRC/*lan.md > $NEWDEST/Slides.md
+  if [ $var1 = "20-Red-vs.-Blue-Project" ]; then
+    grep -i 'slides]' $SRC/*lan.md 2>/dev/null > $NEWDEST/Slides.md
   fi
-  if [ $1 = "24-Final-Project" ]; then
-    grep -i 'slides]' $SRC/*lan.md > $NEWDEST/Slides.md
+  if [ $var1 = "24-Final-Project" ]; then
+    grep -i 'slides]' $SRC/*lan.md 2>/dev/null > $NEWDEST/Slides.md
   fi
 fi
 
-if [ $4 = "day1" ]; then
+if [ $var4 = "day1" ]; then
   for i in $SRC; do
     cp -ru $SRC $DEST
   done
@@ -101,13 +79,13 @@ if [ $4 = "day1" ]; then
   find $NEWDEST/1 -name .ip.swp -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST/1 -name Networking_CTF_Key.xlsx -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST/1 -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \; 2>/dev/null
-  grep -i 'slides]' $SRC/1/*lan.md > $NEWDEST/1/Slides.md
+  grep -i 'slides]' $SRC/1/*lan.md 2>/dev/null > $NEWDEST/1/Slides.md 
   rm -rf $NEWDEST/2
   rm -rf $NEWDEST/3
   rm -rf $NEWDEST/4
 fi
 
-if [ $4 = "day2" ]; then
+if [ $var4 = "day2" ]; then
   for i in $SRC; do
     cp -ru $SRC $DEST
   done
@@ -120,12 +98,12 @@ if [ $4 = "day2" ]; then
   find $NEWDEST/2 -name .ip.swp -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST/2 -name Networking_CTF_Key.xlsx -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST/2 -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \; 2>/dev/null
-  grep -i 'slides]' $SRC/2/*lan.md > $NEWDEST/2/Slides.md
+  grep -i 'slides]' $SRC/2/*lan.md 2>/dev/null > $NEWDEST/2/Slides.md
   rm -rf $NEWDEST/3
   rm -rf $NEWDEST/4
 fi
 
-if [ $4 = "day3" ]; then
+if [ $var4 = "day3" ]; then
   for i in $SRC; do
     cp -ru $SRC $DEST
   done
@@ -138,11 +116,11 @@ if [ $4 = "day3" ]; then
   find $NEWDEST/3 -name .ip.swp -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST/3 -name Networking_CTF_Key.xlsx -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST/3 -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \; 2>/dev/null
-  grep -i 'slides]' $SRC/3/*lan.md > $NEWDEST/3/Slides.md
+  grep -i 'slides]' $SRC/3/*lan.md 2>/dev/null > $NEWDEST/3/Slides.md
   rm -rf $NEWDEST/4
 fi
 
-if [ $4 = "day4" ]; then
+if [ $var4 = "day4" ]; then
   for i in $SRC; do
     cp -ru $SRC $DEST
   done
@@ -155,17 +133,17 @@ if [ $4 = "day4" ]; then
   find $NEWDEST/4 -name .ip.swp -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST/4 -name Networking_CTF_Key.xlsx -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST/4 -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \; 2>/dev/null
-  grep -i 'slides]' $SRC/4/*lan.md > $NEWDEST/4/Slides.md
+  grep -i 'slides]' $SRC/4/*lan.md 2>/dev/null > $NEWDEST/4/Slides.md
 fi
 
-if [ $4 = "home" ]; then
+if [ $var4 = "home" ]; then
   for i in $HOMESRC; do
     cp -ru $HOMESRC $HOMEDEST
   done
   find $NEWHOMEDEST -iname sol* -exec rm -rf {} \; 2>/dev/null
 fi
 
-if [ $4 = "1" ]; then
+if [ $var4 = "1" ]; then
   if [ -d "$NEWDEST/2" ]; then
     for i in $SRC; do
       cp -ru $SRC $DEST
@@ -195,7 +173,7 @@ if [ $4 = "1" ]; then
   fi
 fi
 
-if [ $4 = "2" ]; then
+if [ $var4 = "2" ]; then
   if [ -d "$NEWDEST/3" ]; then
     for i in $SRC; do
       cp -ru $SRC $DEST
@@ -223,7 +201,7 @@ if [ $4 = "2" ]; then
   fi
 fi
 
-if [ $4 = "3" ]; then
+if [ $var4 = "3" ]; then
   if [ -d "$NEWDEST/4" ]; then
     for i in $SRC; do
       cp -ru $SRC $DEST
@@ -249,7 +227,7 @@ if [ $4 = "3" ]; then
   fi
 fi
 
-if [ $4 = "4" ]; then
+if [ $var4 = "4" ]; then
   for i in $SRC; do
     cp -ru $SRC $DEST
   done
@@ -266,7 +244,7 @@ if [ $4 = "4" ]; then
   fi
 fi
 
-if [ $4 = "unithome" ]; then
+if [ $var4 = "unithome" ]; then
   for i in $SRC; do
     cp -ru $SRC $DEST
   done
@@ -279,18 +257,18 @@ if [ $4 = "unithome" ]; then
   find $NEWDEST -name .ip.swp -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST -name Networking_CTF_Key.xlsx -exec rm -rf {} \; 2>/dev/null
   find $NEWDEST -name Networking_CTF_Version_II_Solution.xlsx -exec rm -rf {} \; 2>/dev/null
-  grep -i 'slides]' $SRC/1/*lan.md > $NEWDEST/1/Slides.md
-  grep -i 'slides]' $SRC/2/*lan.md > $NEWDEST/2/Slides.md
-  grep -i 'slides]' $SRC/3/*lan.md > $NEWDEST/3/Slides.md
-  grep -i 'slides]' $SRC/4/*lan.md > $NEWDEST/4/Slides.md
-  if [ $1 = "13-Elk-Stack-Project" ]; then
-    grep -i 'slides]' $SRC/*lan.md > $NEWDEST/Slides.md
+  grep -i 'slides]' $SRC/1/*lan.md 2>/dev/null > $NEWDEST/1/Slides.md
+  grep -i 'slides]' $SRC/2/*lan.md 2>/dev/null > $NEWDEST/2/Slides.md
+  grep -i 'slides]' $SRC/3/*lan.md 2>/dev/null > $NEWDEST/3/Slides.md
+  grep -i 'slides]' $SRC/4/*lan.md 2>/dev/null > $NEWDEST/4/Slides.md
+  if [ $var1 = "13-Elk-Stack-Project" ]; then
+    grep -i 'slides]' $SRC/*lan.md 2>/dev/null > $NEWDEST/Slides.md
   fi
-  if [ $1 = "20-Red-vs.-Blue-Project" ]; then
-    grep -i 'slides]' $SRC/*lan.md > $NEWDEST/Slides.md
+  if [ $var1 = "20-Red-vs.-Blue-Project" ]; then
+    grep -i 'slides]' $SRC/*lan.md 2>/dev/null > $NEWDEST/Slides.md
   fi
-  if [ $1 = "24-Final-Project" ]; then
-    grep -i 'slides]' $SRC/*lan.md > $NEWDEST/Slides.md
+  if [ $var1 = "24-Final-Project" ]; then
+    grep -i 'slides]' $SRC/*lan.md 2>/dev/null > $NEWDEST/Slides.md
   fi
   for i in $HOMESRC; do
     cp -ru $HOMESRC $HOMEDEST
@@ -298,7 +276,7 @@ if [ $4 = "unithome" ]; then
   find $NEWHOMEDEST -iname sol* -exec rm -rf {} \; 2>/dev/null
 fi 
 
-if [ $4 = "homesol" ]; then
+if [ $var4 = "homesol" ]; then
   if [[ -n $(find $HOMESRC -iname sol*) ]]; then
     :
   else
@@ -321,4 +299,4 @@ find $HOMEDEST -type d -exec touch {}/.gitkeep \; 2>/dev/null
 shopt -s extglob
 rm !(README.md) 2>/dev/null
 
-git add $2 && git commit -m "$3" && git push
+git add $var2 && git commit -m "$var3" && git push
